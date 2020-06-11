@@ -98,6 +98,7 @@ document.getElementById(`form-p1`).addEventListener("submit", callback);
 document.getElementById(`form-p-1`).addEventListener("submit", callback);
 document.getElementById(`button-p1`).addEventListener("click", callback);
 document.getElementById(`button-p-1`).addEventListener("click", callback);
+
 // give warning on reload/ refresh if any change accured
 window.onbeforeunload = function (event) {
   return confirm("Confirm refresh");
