@@ -1,5 +1,6 @@
+// variables
 var tiles = Math.floor(Math.random() * 1000) + 1000; // total tiles left
-
+var hint_left = [5, 5];
 document.getElementById("tiles-val").innerHTML = tiles;
 
 var values = []; // allowed withdrawls
@@ -51,45 +52,52 @@ document.getElementById(`input-p-1`).setAttribute("readonly", "true");
 
 var callback = (event) => {
   event.preventDefault();
-  if (document.activeElement.id != `input-p${turn}`) return;
+  console.log(document.activeElement.id);
+  if (
+    document.activeElement.id == `input-p${turn}` ||
+    document.activeElement.id == `button-p${turn}`
+  ) {
+    let val = document.getElementById(`input-p${turn}`).value;
 
-  let val = document.getElementById(`input-p${turn}`).value;
-
-  val *= 1;
-  if (tiles < val || !values.includes(val)) {
-    document.getElementById(`input-p${turn}`).value = "";
-    // display invalid warning on invalid or empty move
-    elem.classList.remove("alert-success");
-    elem.classList.add("alert-danger");
-    elem.innerHTML = "INVALID";
-    elem.classList.remove("invisible");
-  } else {
-    // if move accepted
-    // removing current player values
-    document.getElementById(`input-p${turn}`).value = "";
-    document.getElementById(`input-p${turn}`).setAttribute("readonly", "true");
-    elem.classList.add("invisible");
-    // changing player
-    turn *= -1;
-    document.getElementById(`input-p${turn}`).removeAttribute("readonly");
-    elem = document.getElementById(`alert-p${turn}`);
-    document.getElementById(`input-p${turn}`).focus();
-    elem.classList.add("alert-success");
-    elem.classList.remove("alert-danger");
-    elem.innerHTML = "your turn";
-    elem.classList.remove("invisible");
-    tiles -= val;
-    document.getElementById("tiles-val").innerHTML = tiles;
-    if (tiles < values[0]) {
-      alert(` ${turn === 1 ? "PLAYER 1" : "PLAYER 2"} WON THE GAME `);
-      location.reload();
+    val *= 1;
+    if (tiles < val || !values.includes(val)) {
+      document.getElementById(`input-p${turn}`).value = "";
+      // display invalid warning on invalid or empty move
+      elem.classList.remove("alert-success");
+      elem.classList.add("alert-danger");
+      elem.innerHTML = "INVALID";
+      elem.classList.remove("invisible");
+    } else {
+      // if move accepted
+      // removing current player values
+      document.getElementById(`input-p${turn}`).value = "";
+      document
+        .getElementById(`input-p${turn}`)
+        .setAttribute("readonly", "true");
+      elem.classList.add("invisible");
+      // changing player
+      turn *= -1;
+      document.getElementById(`input-p${turn}`).removeAttribute("readonly");
+      elem = document.getElementById(`alert-p${turn}`);
+      document.getElementById(`input-p${turn}`).focus();
+      elem.classList.add("alert-success");
+      elem.classList.remove("alert-danger");
+      elem.innerHTML = "your turn";
+      elem.classList.remove("invisible");
+      tiles -= val;
+      document.getElementById("tiles-val").innerHTML = tiles;
+      if (tiles < values[0]) {
+        alert(` ${turn === 1 ? "PLAYER 2" : "PLAYER 1"} WON THE GAME `);
+        location.reload();
+      }
     }
   }
 };
 
 document.getElementById(`form-p1`).addEventListener("submit", callback);
 document.getElementById(`form-p-1`).addEventListener("submit", callback);
-
+document.getElementById(`button-p1`).addEventListener("click", callback);
+document.getElementById(`button-p-1`).addEventListener("click", callback);
 // give warning on reload/ refresh if any change accured
 window.onbeforeunload = function (event) {
   return confirm("Confirm refresh");
@@ -98,6 +106,22 @@ window.onbeforeunload = function (event) {
 // hint callback
 var hint = (event) => {
   if (event.target.id != `hint-p${turn}`) return;
+  let x = 0;
+  turn === 1 ? (x = 0) : (x = 1);
+  if (hint_left[x] <= 0) {
+    document.getElementById(`hint-ans-p${turn}`).classList.remove("invisible");
+    document.getElementById(`hint-ans-p${turn}`).classList.add("color-red");
+    document.getElementById(`hint-ans-p${turn}`).innerHTML = "X";
+    window.setTimeout(() => {
+      document
+        .getElementById(`hint-ans-p${turn}`)
+        .classList.remove("color-red");
+      console.log("done");
+      document.getElementById(`hint-ans-p${turn}`).classList.add("invisible");
+    }, 1000);
+    return;
+  }
+
   let t = [];
   for (let i = 0; i < values.length; i++) {
     if (target_pos.includes(tiles - values[i])) {
@@ -113,6 +137,10 @@ var hint = (event) => {
     console.log("done");
     document.getElementById(`hint-ans-p${turn}`).classList.add("invisible");
   }, 1000);
+  hint_left[x]--;
+  document.getElementById(
+    `hint-left-p${turn}`
+  ).innerHTML = `${hint_left[x]} left`;
 };
 // hint eventlistener
 document.getElementById("hint-p1").addEventListener("click", hint);
