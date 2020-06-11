@@ -1,0 +1,173 @@
+body {
+  padding: 5px;
+  height: 100vh;
+  background: #060a0e;
+}
+
+.navbar {
+  background-color: #1b2a3d;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+
+.navbar a {
+  font-size: 30px;
+  font-weight: bold;
+  color: #527ab0;
+  letter-spacing: 2px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.navbar a:hover {
+  -webkit-transform: translateY(-2px) scale(1.2);
+          transform: translateY(-2px) scale(1.2);
+  color: #98b0d0;
+}
+
+.main h1 {
+  color: #98b0d0;
+  letter-spacing: 0.2rem;
+}
+
+.main img {
+  width: 100%;
+}
+
+.main figure {
+  position: relative;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.main figure figcaption {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  visibility: hidden;
+}
+
+.main figure figcaption a {
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(5, 2, 2, 0.87);
+  font-weight: bold;
+  font-size: 30px;
+  letter-spacing: 2px;
+}
+
+.main figure figcaption a:hover {
+  text-decoration: underline;
+}
+
+.main figure:hover img {
+  -webkit-filter: blur(15px) grayscale(50%) brightness(2);
+          filter: blur(15px) grayscale(50%) brightness(2);
+}
+
+.main figure:hover figcaption {
+  visibility: visible;
+}
+
+.main figure:hover .grid {
+  -webkit-filter: blur(10px) grayscale(50%) brightness(3);
+          filter: blur(10px) grayscale(50%) brightness(3);
+}
+
+.footer {
+  background-color: #1b2a3d;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+
+.footer a {
+  color: #527ab0;
+  letter-spacing: 2px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.footer a:hover {
+  color: #98b0d0;
+}
+
+.heap a {
+  display: inline-block;
+  padding: 10px 0;
+}
+
+.heap-computer {
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+.heap-computer .button {
+  padding: 10px 20px;
+  background: #b3adb1;
+  display: inline-block;
+  border: none;
+  letter-spacing: 2px;
+  font-weight: 700;
+  border-radius: 40px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.heap-computer .button:hover {
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
+}
+
+.heap-computer .button:active, .heap-computer .button:visited {
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
+}
+
+.form {
+  width: 100%;
+  display: inline-block;
+}
+
+.form-button {
+  display: inline-block;
+}
+
+.color-white {
+  color: white;
+}
+
+.color-grey {
+  color: #b3adb1;
+}
+
+.color-blue {
+  color: #98b0d0;
+}
+
+.color-cream {
+  color: #a19da0;
+}
+
+.color-violet {
+  color: #5a5c7d;
+}
+
+.color-red {
+  color: #ff0000;
+}
+
+.color-yellow {
+  color: #ffea00;
+}
+
+.color-green {
+  color: #05ff3b;
+}
+
+.color-sky {
+  color: #05fff7;
+}
+/*# sourceMappingURL=style.css.map */
