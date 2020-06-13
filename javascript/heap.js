@@ -284,7 +284,7 @@
   document.getElementById(`button-p1`).addEventListener("click", useBomb);
   document.getElementById(`button-p-1`).addEventListener("click", useBomb);
 
-  // refresh warning
+  // refresh warning.
   window.onbeforeunload = function (event) {
     return confirm("Confirm refresh");
   };
