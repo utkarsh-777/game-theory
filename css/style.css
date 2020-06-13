@@ -170,4 +170,33 @@ body {
 .color-sky {
   color: #05fff7;
 }
+
+.main-heap {
+  min-height: 80vh;
+  height: auto;
+}
+
+.main-heap .col-sm {
+  letter-spacing: 3px;
+}
+
+.main-heap #table-grid {
+  margin: 0 auto;
+}
+
+.main-heap #table-grid tr td {
+  cursor: pointer;
+  color: white;
+  text-align: center;
+  font-size: 10px;
+  font-weight: bold;
+  border: 2px solid #cccaca;
+  background-color: rgba(38, 38, 38, 0.801);
+  width: 2rem;
+  height: 2rem;
+}
+
+.letter-spacing {
+  letter-spacing: 10px;
+}
 /*# sourceMappingURL=style.css.map */

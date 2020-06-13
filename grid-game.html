@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <section class="navbar">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link active font-weight-bold text-monospace" href="#"
+            >HOME</a
+          >
+        </li>
+      </ul>
+    </section>
+
+    <main class="main-heap">
+      <div class="container-fluid">
+        <div class="row text-center align-items-center color-white mt-2">
+          <div class="col-sm">
+            PLAYER 1
+            <button
+              type="button"
+              class="btn btn-outline-secondary ml-3 text-uppercase"
+              id="button-p1"
+            >
+              use bomb
+            </button>
+          </div>
+          <div class="col-sm" id="bomb-p1">
+            2 BOMBS LEFT
+          </div>
+          <div class="col-sm">
+            <div
+              class="alert alert-success text-center text-uppercase my-auto"
+              id="alert"
+            >
+              player 1 turn
+            </div>
+          </div>
+          <div class="col-sm">
+            PLAYER 2
+            <button
+              type="button"
+              class="btn btn-outline-secondary ml-3 text-uppercase"
+              id="button-p-1"
+            >
+              use bomb
+            </button>
+          </div>
+          <div class="col-sm" id="bomb-p-1">
+            2 BOMBS LEFT
+          </div>
+        </div>
+      </div>
+
+      <div class="py-4">
+        <table id="table-grid">
+          <tr id="0">
+            <td class="0"></td>
+          </tr>
+        </table>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <ul class="nav justify-content-center text-uppercase">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">git hub</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">report a bug</a>
+        </li>
+      </ul>
+    </footer>
+    <script src="javascript/heap.js"></script>
+  </body>
+</html>
