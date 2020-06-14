@@ -1,0 +1,39 @@
+extends base
+
+block content
+
+    main(class="main-heap mb-5")
+        div(class="container-fluid")
+            div(class="row text-center align-items-center color-white mt-2")
+                div(class="col-sm") PLAYER 1
+                    button(
+                    type="button"
+                    class="btn btn-outline-secondary ml-3 text-uppercase"
+                    id="button-p1"
+                    ) use bomb
+                div(class="col-sm" id="bomb-p1") 2 BOMBS LEFT
+                
+                div(class="col-sm")
+                    div(class="alert alert-success text-center text-uppercase my-auto"
+                    id="alert") player 1 turn
+            
+                div(class="col-sm") PLAYER 2
+                    button(
+                    type="button"
+                    class="btn btn-outline-secondary ml-3 text-uppercase"
+                    id="button-p-1"
+                    ) use bomb
+                
+                div(class="col-sm" id="bomb-p-1") 2 BOMBS LEFT
+       
+
+        div(class="py-4")
+            table(id="table-grid")
+        //-     tr(id="0">
+        //-         <td class="0"></td>
+        //-     </tr>
+        //-     </table>
+        //- </div>
+        //- </main>
+block script
+    script(src="javascript/heap.js")        

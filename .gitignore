@@ -1,0 +1,6 @@
+# Directories #
+node_modules
+views
+
+# Compiler outputs #
+app_p.js

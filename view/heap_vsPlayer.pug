@@ -1,0 +1,76 @@
+extends base
+
+block content
+
+    main.heap-computer
+        div.container
+            div.row.justify-content-center.my-2
+                div.col.text-right.text-uppercase.color-grey.font-weight-bold tiles left -    
+                div.col.color-grey.font-weight-bold#tiles-val 1000     
+        div.container-fluid
+            div.row
+                div.col.text-uppercase.color-cream allowed moves
+                div.col-2.color-red#val-0 1
+                div.col-2.color-yellow#val-1 2
+                div.col-2.color-green#val-2 3
+                div.col-2.color-sky#val-3 4   
+            div.row
+                div.col-6
+                    h1.text-center.text-uppercase.mt-2.color-blue#player-1 player 1
+                    div.row
+                        div.col-12.mt-5.mb-3
+                            div.alert.alert-danger.d-flex.justify-content-center.invisible(role="alert" id="alert-p1") invalid move
+                        div.col-4.my-5
+                            a(type="button" class="button" id = 'hint-p1') HINT 
+                        div(class="col-4 my-5 color-yellow" id = "hint-left-p1") 5 left  
+                        div(class="col-4 my-5 color-white invisible" id = "hint-ans-p1") 5
+                        div(class="col-12 my-5")
+                            form(class="input-group mb-3" id = "form-p1")                      
+                                input(type="text" class="form-control" placeholder="CHOOSE VALUE" aria-label="Recipient's username" aria-describedby="button-addon2" id = "input-p1" required)
+                                div(class="input-group-append")
+                                    button(
+                                    class="btn btn-outline-secondary"
+                              
+                                    id="button-p1"
+                                    ) Move
+                
+                div(class="col-6")
+                    h1(class="text-center text-uppercase mt-2 color-blue" id="player--1") player 2
+                    div(class="row")
+                        div(class="col-12 mt-5 mb-3")
+                            div(
+                            class="alert alert-danger d-flex justify-content-center invisible"
+                            role="alert"
+                            id="alert-p-1"
+                            ) invalid move
+
+                        div(class="col-4 my-5")
+                            a(type="button" class="button" id = 'hint-p-1') HINT
+                        
+                        div(class="col-4 my-5 color-yellow" id = "hint-left-p-1") 5 left
+                        
+                        div(class="col-4 my-5 invisible color-white" id = "hint-ans-p-1") 5
+                        
+
+                        div(class="col-12 my-5")
+                            form(class="input-group mb-3" id = "form-p-1" action="")
+                            
+                                input(
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="CHOOSE VALUE"
+                                    aria-label="Recipient's username"
+                                    aria-describedby="button-addon2"
+                                    id = "input-p-1"
+                                    required
+                                )
+                                div(class="input-group-append form-button")
+                                    button(
+                                    class="btn btn-outline-secondary"
+                                   
+                                    id="button-p-1"
+                                    ) Move
+
+block script
+    script(src="javascript/script.js")
+                                        
