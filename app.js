@@ -3,6 +3,7 @@ const path = require("path");
 const xss = require("xss-clean");
 const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
+const compression = require("compression");
 
 const app = express();
 
@@ -24,6 +25,8 @@ const limiter = rateLimit({
 app.use(limiter);
 // Data sanitization against XSS
 app.use(xss());
+
+app.use(compression());
 
 app.use(routes);
 

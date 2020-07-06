@@ -52,7 +52,7 @@ document.getElementById(`input-p-1`).setAttribute("readonly", "true");
 
 var callback = (event) => {
   event.preventDefault();
-  console.log(document.activeElement.id);
+  // console.log(document.activeElement.id);
   if (
     document.activeElement.id == `input-p${turn}` ||
     document.activeElement.id == `button-p${turn}`
@@ -117,7 +117,7 @@ var hint = (event) => {
       document
         .getElementById(`hint-ans-p${turn}`)
         .classList.remove("color-red");
-      console.log("done");
+      // console.log("done");
       document.getElementById(`hint-ans-p${turn}`).classList.add("invisible");
     }, 1000);
     return;
@@ -135,7 +135,7 @@ var hint = (event) => {
   document.getElementById(`hint-ans-p${turn}`).classList.remove("invisible");
   document.getElementById(`hint-ans-p${turn}`).innerHTML = ans;
   window.setTimeout(() => {
-    console.log("done");
+    // console.log("done");
     document.getElementById(`hint-ans-p${turn}`).classList.add("invisible");
   }, 1000);
   hint_left[x]--;

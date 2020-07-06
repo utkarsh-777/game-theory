@@ -184,7 +184,7 @@
       if (removeObstacle(e)) {
         turn === 1 ? (bomb = bombs[0]) : (bomb = bombs[1]);
         bomb--;
-        console.log("bomb --", bomb);
+        // console.log("bomb --", bomb);
         turn === 1 ? bombs[0]-- : bombs[1]--;
         document.getElementById(
           `bomb-p${turn}`
@@ -229,7 +229,7 @@
     ) {
       printAlert("INVALID", "alert", `PLAYER ${turn === 1 ? 1 : 2} TURN`);
       // alert.innerHTML = "INVALID";
-      console.log("INVALID");
+      // console.log("INVALID");
       return;
     }
     // if row is same check if there is an obstacle and change value of flag to 1
