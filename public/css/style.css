@@ -15,6 +15,7 @@ body {
   font-weight: bold;
   color: #527ab0;
   letter-spacing: 2px;
+  word-spacing: -10px;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
@@ -198,5 +199,11 @@ body {
 
 .letter-spacing {
   letter-spacing: 10px;
+}
+
+.help {
+  font-size: 1rem;
+  letter-spacing: 2px;
+  line-height: 2.2rem;
 }
 /*# sourceMappingURL=style.css.map */

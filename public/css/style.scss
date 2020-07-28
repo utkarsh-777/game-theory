@@ -13,6 +13,7 @@ body {
     font-weight: bold;
     color: #527ab0;
     letter-spacing: 2px;
+    word-spacing: -10px;
     transition: all 0.3s;
     &:hover {
       transform: translateY(-2px) scale(1.2);
@@ -171,4 +172,10 @@ body {
 
 .letter-spacing {
   letter-spacing: 10px;
+}
+
+.help {
+  font-size: 1rem;
+  letter-spacing: 2px;
+  line-height: 2.2rem;
 }

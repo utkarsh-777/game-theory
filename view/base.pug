@@ -8,23 +8,45 @@ html(lang="en")
     <!-- Bootstrap CSS -->
     link(rel="stylesheet" href="css/bootstrap.css")
     link(rel="stylesheet" href="css/style.css")
- 
-    title Hello world!
+    script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous")
+    script(src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous")
+        
+    script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous")
+  
+    title=title
+    link(rel="icon" href="img/puzzle.png" type="image/icon type")
   body
     section.navbar
       ul.nav
         li.nav-item
           a.nav-link.active.font-weight-bold.text-monospace(href="/") HOME
+        - if(game_page)
+            a.nav-link.font-weight-bold.text-monospace( href="#collapseExample" data-toggle="collapse" aria-controls="collapseExample" role="button" aria-expanded="false") HOW TO PLAY
+   
+    div.collapse#collapseExample
+      div.card.card-body
+        ul.font-weight-normal.text-capitalize.help
+          - for(var i = 0; i <game_page.length; i++)
+             li=game_page[i]
+           
+          //-  will look like     
+             
+          //- li there will be four numbers given you has to choose one
+          //- li the choosen number of stones will be reduced from the total tiles
+          //- li you cannot remove more tiles than the available stones
+          //- li the player who cannot play its turn will loose the game
+          //- li 5 hints are given to both players to help them guessing the move
 
+   
+   
     block content
      h1 content 
-
-
+         
     footer.footer.fixed-bottom
       ul.nav.justify-content-center.text-uppercase
         li.nav-item
-          a.nav-link.active(href="#") git hub
+          a.nav-link.active(href="https://github.com/atisheyJain03/game-theory" target="_blank") git hub
         li.nav-item
-          a.nav-link(href="#") report a bug
-    
+          a.nav-link(href="https://github.com/atisheyJain03/game-theory/issues" target="_blank") report a bug
+     
     block script

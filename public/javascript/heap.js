@@ -1,7 +1,7 @@
 {
   /* 
    1) player can only move up or left
-   2) player cannot cross obstacle (denoted by white coler)
+   2) player cannot cross obstacle (denoted by white color)
    3) both players will play alternatively
    4) 2 bombs will be given to each player to break the obstacle
    5) player who cannot move will loose the game
