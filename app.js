@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const app = express();
+const compression = require("compression");
 
 const routes = require("./route/routes.js");
 
