@@ -1,291 +1,148 @@
-{
-  /* 
-   1) player can only move up or left
-   2) player cannot cross obstacle (denoted by white color)
-   3) both players will play alternatively
-   4) 2 bombs will be given to each player to break the obstacle
-   5) player who cannot move will loose the game
-   6) current position will be denoted by 'x'
-  */
+// variables
+var tiles = Math.floor(Math.random() * 1000) + 1000; // total tiles left
+var hint_left = [5, 5];
+document.getElementById("tiles-val").innerHTML = tiles;
 
-  /* -------------    VARIABLES     ----------------- */
+var values = []; // allowed withdrawls
 
-  let table = document.getElementById("table-grid");
-  let alert = document.getElementById("alert");
-  let turn = 1;
-  let bombUsed = false;
-  let r = 10,
-    c = 10; // total rows and columns in grid
-  let prev = [r - 1, c - 1]; // previous obstacle position
-  let arrCol = [],
-    arrRow = []; // store obstacles position
-  let bombs = [2, 2]; // STORE AVAILABLE BOMB VALUES  ---bombs[0] - player 1 bomb ----bombs[1] - player 2 bombs
-
-  r = Math.floor(Math.random() * 15) + 5; // choose value of row and column
-  c = Math.floor(Math.random() * 15) + 5;
-  prev = [r - 1, c - 1];
-
-  /* ------------- IIFEs ----------------- */
-
-  // IIFE to create grid
-  (() => {
-    let col = '<td class="{$class$}"></td>'; // column html to be inserted in table
-    let row = '<tr id="{$id$}">{$td$}</tr>'; // row html to be inserted in table
-    let colString = ""; //store column string
-    let rowString = ""; // store row string
-    // creating column string
-    for (var i = 0; i < c; i++) {
-      let s = col.replace("{$class$}", i);
-      colString += s;
-    }
-    // creating row string
-    for (var i = 0; i < r; i++) {
-      let s = row.replace("{$id$}", i);
-      s = s.replace("{$td$}", colString);
-      rowString += s;
-    }
-    // inserting row in table HTML
-    table.innerHTML = rowString;
-  })();
-
-  // function to remove previous position
-  var removePrev = () => {
-    document.getElementById(prev[0]).childNodes[prev[1]].innerHTML = "";
-  };
-
-  // IIFE creating obstacles in grid
-  (() => {
-    document.getElementById(prev[0]).childNodes[prev[1]].innerHTML = "X";
-
-    for (let i = 0; i < r; i++) arrRow[i] = [];
-    for (let i = 0; i < c; i++) arrCol[i] = [];
-
-    let arr = [];
-    arr[0] = [0];
-    arr[r - 1] = [c - 1];
-    for (var i = 0; i < r + c; i++) {
-      // selecting randow row and column within the range
-      let row = Math.floor(Math.random() * r);
-      let col = Math.floor(Math.random() * c);
-      if (arr[row]) {
-        // checking if that position already has a obstacle
-        if (arr[row].includes(col)) i--;
-        else {
-          // if no obstacle put there obstacle and change its background color to white
-          arrRow[row].push(col);
-          arrCol[col].push(row);
-          arr[row].push(col);
-          document.getElementById(row).childNodes[col].style.backgroundColor =
-            "white";
-        }
-      } else {
-        // if no column has obstacle in that row create an array and store the value of column for that row
-        arrRow[row].push(col);
-        arrCol[col].push(row);
-        arr[row] = [col];
-        document.getElementById(row).childNodes[col].style.backgroundColor =
-          "white";
-      }
-    }
-  })();
-
-  /* ------------------  INITILIZIATION ----------------------------- */
-
-  // DISSABLE PLAYER 2 BUTTON
-  document.getElementById(`button-p-1`).setAttribute("disabled", "disabled");
-
-  /* -------------------------   FUNCTIONS    ---------------------------- */
-
-  // REMOVE OBSTACLE IT USES BOMB
-  let removeObstacle = (event) => {
-    let flag = 0;
-    let row = event.target.parentNode.id * 1, // current row value
-      col = event.target.classList[0] * 1; // current column value
-
-    // CHECK IF THERE IS AN OBSTACLE AT THE SELECTED POSITION
-    if (arrRow[row].includes(col)) {
-      // console.log("ind", arrRow[row].indexOf(col));
-      arrRow[row].splice(arrRow[row].indexOf(col), 1);
-      arrCol[col].splice(arrCol[col].indexOf(row), 1);
-      // console.log(arrRow);
-      event.target.style.backgroundColor = "#7d7d7d";
-      flag = 1;
-    }
-    return flag;
-  };
-
-  // CHANGE THE TURN AND CHANGE HTML TEXT ACCORDINGLY
-  let changeTurn = () => {
-    document
-      .getElementById(`button-p${turn}`)
-      .setAttribute("disabled", "disabled");
-    turn *= -1; // CHANGE TURN
-    document.getElementById(`button-p${turn}`).removeAttribute("disabled");
-    printAlert("", "success", `PLAYER ${turn === 1 ? 1 : 2} TURN`);
-  };
-
-  // FUNCTION TO CHECK IF THE CURRENT PLAYER LOOSE
-  let isLost = () => {
-    let bomb;
-    turn === 1 ? (bomb = bombs[0]) : (bomb = bombs[1]);
-    // console.log(prev);
-    // console.log(prev[0] === 0 || arrRow[prev[0] - 1].includes(prev[1]));
-    // console.log(prev[1] === 0 || arrCol[prev[1] - 1].includes(prev[0]));
-    // console.log(!bomb);
-
-    if (
-      (prev[0] === 0 || arrRow[prev[0] - 1].includes(prev[1])) && // CHECK IF THE CURRENT ROW IS THE LAST ROW OR 1 POSITION UP IS NOT THE OBSTACLE
-      (prev[1] === 0 || arrCol[prev[1] - 1].includes(prev[0])) && // CHECK IF THE CURRENT COLUMN IS THE LAST COLUMN OR 1 POSITION LEFT IS NOT THE OBSTACLE
-      !bomb // CHECK IF NO BOMB LEFT TO BREAK THE OBSTACLE
-    )
-      return true;
-    return false;
-  };
-
-  // CHECK IF THE CURRENT POSITION IF TOP-LEFT [0,0]
-  let isWinning = () => {
-    if (!prev[0] && !prev[1]) {
-      printAlert("", "success", `PLAYER ${turn === 1 ? 1 : 2} won`);
-    }
-    return !prev[0] && !prev[1]; // WE ALREADY SET VALUE OF PREV TO CURRENT VALUES AND THEN CALL THIS FUNCTION
-  };
-
-  // CHANGES THE STYLE AND INNER HTML OF THE ALERT BOX
-  let printAlert = (message, type, player) => {
-    if (type === "alert") {
-      window.setTimeout(() => {
-        alert.classList.add("alert-success");
-        alert.classList.remove("alert-danger");
-        alert.innerHTML = player;
-      }, 1500);
-      alert.classList.remove("alert-success");
-      alert.classList.add("alert-danger");
-      alert.innerHTML = message;
-    } else {
-      window.setTimeout(() => {
-        alert.innerHTML = message || player;
-      }, 100);
-    }
-  };
-
-  // CALLBACK OF USE BOMB
-  let useBomb = (event) => {
-    let bomb;
-    turn === 1 ? (bomb = bombs[0]) : (bomb = bombs[1]);
-
-    if (!bomb) {
-      printAlert("NO BOMBS LEFT", "alert", `PLAYER ${turn === 1 ? 1 : 2} TURN`);
-      return;
-    }
-    // WITH THE HELP OF bombUsed VARIABLE WE CAN THE OTHER EVENTLISTENER IN (CALLED WHEN CLICK IN GRID) TO ACT
-    bombUsed = true;
-    table.addEventListener("click", (e) => {
-      bombUsed = false; // SET SO THAT THE OTHER EVENT LISTENER CAN ACT
-      if (removeObstacle(e)) {
-        turn === 1 ? (bomb = bombs[0]) : (bomb = bombs[1]);
-        bomb--;
-        // console.log("bomb --", bomb);
-        turn === 1 ? bombs[0]-- : bombs[1]--;
-        document.getElementById(
-          `bomb-p${turn}`
-        ).innerHTML = `${bomb} BOMBS LEFT`;
-        if (isLost()) {
-          printAlert(
-            "",
-            "success",
-            `PLAYER ${turn === 1 ? 2 : 1} WON THE GAME`
-          );
-          if (
-            confirm(
-              `PLAYER ${turn === 1 ? 2 : 1} WON THE GAME\nwant to play again?`
-            )
-          ) {
-            location.reload();
-          }
-        }
-      } else {
-        bombUsed = false;
-        return;
-      }
-    });
-  };
-
-  /* ---------------- EVENT LISTENERS ---------------------- */
-
-  table.addEventListener("click", (event) => {
-    if (bombUsed) return; // THIS MEANS THIS FUNCTION IS CALLED IN CALLBACK OF BUTTON (USE BOMB)
-    bombUsed = false;
-
-    let row = event.target.parentNode.id * 1, // current row value
-      col = event.target.classList[0] * 1; // current column value
-    let flag = 0;
-    if (!event.target.classList[0]) return; // return if no column is selected in row like when they click on broder in table
-
-    if (
-      (row != prev[0] && col != prev[1]) || // if clicked on position which is not on same column or same row as player can only move right or up
-      row > prev[0] || // prevent backword move
-      col > prev[1] || // prevent backword move
-      (row === prev[0] && col === prev[1]) // if clicked on previous position
-    ) {
-      printAlert("INVALID", "alert", `PLAYER ${turn === 1 ? 1 : 2} TURN`);
-      // alert.innerHTML = "INVALID";
-      // console.log("INVALID");
-      return;
-    }
-    // if row is same check if there is an obstacle and change value of flag to 1
-    if (row === prev[0]) {
-      // console.log(1, arrRow[row], col, prev[1]);
-      arrRow[row].forEach((el) => {
-        if (el >= col && el < prev[1]) flag = 1;
-      });
-    }
-    // if col is same check if there is an obstacle and change value of flag to 1
-    if (col === prev[1]) {
-      // console.log(2, arrCol[col], row, prev[0]);
-      arrCol[col].forEach((el) => {
-        if (el >= row && el < prev[0]) flag = 1;
-      });
-    }
-    // if flag return invalid
-    if (flag) {
-      printAlert("INVALID", "alert", `PLAYER ${turn === 1 ? 1 : 2} TURN`);
-      alert.innerHTML = "INVALID";
-      // console.log("INVALID");
-      return;
-    }
-    removePrev(); // remove X from previous position
-    event.target.innerHTML = "X"; // put X on current position
-    prev = [event.target.parentNode.id * 1, event.target.classList[0] * 1]; // change previous position
-    isWinning();
-    // WHEN YOU REACH TOP-RIGHT POINT
-    if (isWinning()) {
-      if (
-        confirm(
-          `PLAYER ${turn === 1 ? 1 : 2} WON THE GAME\nwant to play again?`
-        )
-      )
-        location.reload();
-    } else changeTurn();
-
-    // WHEN YOU CANNOT MOVE UP OR LEFT
-    // OTHER PLAYER WILL WIN IN THIS SITUATION
-    if (isLost()) {
-      printAlert("", "success", `PLAYER ${turn === 1 ? 2 : 1} WON THE GAME`);
-      if (
-        confirm(
-          `PLAYER ${turn === 1 ? 2 : 1} WON THE GAME\nwant to play again?`
-        )
-      ) {
-        location.reload();
-      }
-    }
-  });
-
-  document.getElementById(`button-p1`).addEventListener("click", useBomb);
-  document.getElementById(`button-p-1`).addEventListener("click", useBomb);
-
-  // refresh warning.
-  window.onbeforeunload = function (event) {
-    return confirm("Confirm refresh");
-  };
+while (values.length < 4) {
+  let x = Math.floor(Math.random() * 50) + 2;
+  if (values.includes(x)) continue;
+  else values.push(x);
 }
+
+values.sort(function (a, b) {
+  return a - b;
+});
+
+var target_pos = [0]; // loosing position for opponent if they get on these position
+
+// setting loosing position
+for (var i = 1; i <= tiles; i++) {
+  let flag = 0;
+  for (var j = 0; j < values.length; j++) {
+    if (values[j] > i) break;
+    if (target_pos.includes(i - values[j])) {
+      flag = 1;
+      break;
+    }
+  }
+  if (!flag) target_pos.push(i);
+}
+
+values.forEach((element, i) => {
+  document.getElementById(`val-${i}`).innerHTML = values[i];
+});
+
+var turn = 1; // current player turn
+
+// if turn = 1        --- player 1 turn
+// if turn = -1       --- player 2 turn
+
+// preparing for player 1 turn
+var elem = document.getElementById(`alert-p${turn}`);
+document.getElementById(`input-p${turn}`).focus();
+elem.classList.add("alert-success");
+elem.classList.remove("alert-danger");
+elem.innerHTML = "YOUR TURN";
+elem.classList.remove("invisible");
+
+//  this will make other player input dissable
+document.getElementById(`input-p-1`).setAttribute("readonly", "true");
+
+var callback = (event) => {
+  event.preventDefault();
+  // console.log(document.activeElement.id);
+  if (
+    document.activeElement.id == `input-p${turn}` ||
+    document.activeElement.id == `button-p${turn}`
+  ) {
+    let val = document.getElementById(`input-p${turn}`).value;
+
+    val *= 1;
+    if (tiles < val || !values.includes(val)) {
+      document.getElementById(`input-p${turn}`).value = "";
+      // display invalid warning on invalid or empty move
+      elem.classList.remove("alert-success");
+      elem.classList.add("alert-danger");
+      elem.innerHTML = "INVALID";
+      elem.classList.remove("invisible");
+    } else {
+      // if move accepted
+      // removing current player values
+      document.getElementById(`input-p${turn}`).value = "";
+      document
+        .getElementById(`input-p${turn}`)
+        .setAttribute("readonly", "true");
+      elem.classList.add("invisible");
+      // changing player
+      turn *= -1;
+      document.getElementById(`input-p${turn}`).removeAttribute("readonly");
+      elem = document.getElementById(`alert-p${turn}`);
+      document.getElementById(`input-p${turn}`).focus();
+      elem.classList.add("alert-success");
+      elem.classList.remove("alert-danger");
+      elem.innerHTML = "your turn";
+      elem.classList.remove("invisible");
+      tiles -= val;
+      document.getElementById("tiles-val").innerHTML = tiles;
+      if (tiles < values[0]) {
+        alert(` ${turn === 1 ? "PLAYER 2" : "PLAYER 1"} WON THE GAME `);
+        location.reload();
+      }
+    }
+  }
+};
+
+document.getElementById(`form-p1`).addEventListener("submit", callback);
+document.getElementById(`form-p-1`).addEventListener("submit", callback);
+document.getElementById(`button-p1`).addEventListener("click", callback);
+document.getElementById(`button-p-1`).addEventListener("click", callback);
+
+// give warning on reload/ refresh if any change accured
+window.onbeforeunload = function (event) {
+  return confirm("Confirm refresh");
+};
+
+// hint callback
+var hint = (event) => {
+  if (event.target.id != `hint-p${turn}`) return;
+  let x = 0;
+  turn === 1 ? (x = 0) : (x = 1);
+  if (hint_left[x] <= 0) {
+    document.getElementById(`hint-ans-p${turn}`).classList.remove("invisible");
+    document.getElementById(`hint-ans-p${turn}`).classList.add("color-red");
+    document.getElementById(`hint-ans-p${turn}`).innerHTML = "X";
+    window.setTimeout(() => {
+      document
+        .getElementById(`hint-ans-p${turn}`)
+        .classList.remove("color-red");
+      // console.log("done");
+      document.getElementById(`hint-ans-p${turn}`).classList.add("invisible");
+    }, 1000);
+    return;
+  }
+
+  let t = [];
+  for (let i = 0; i < values.length; i++) {
+    if (target_pos.includes(tiles - values[i])) {
+      t.push(values[i]);
+    }
+  }
+  let ans = 0;
+  if (t.length === 0) ans = values[0];
+  else ans = t[Math.floor(Math.random() * 1) + t.length - 1];
+  document.getElementById(`hint-ans-p${turn}`).classList.remove("invisible");
+  document.getElementById(`hint-ans-p${turn}`).innerHTML = ans;
+  window.setTimeout(() => {
+    // console.log("done");
+    document.getElementById(`hint-ans-p${turn}`).classList.add("invisible");
+  }, 1000);
+  hint_left[x]--;
+  document.getElementById(
+    `hint-left-p${turn}`
+  ).innerHTML = `${hint_left[x]} left`;
+};
+// hint eventlistener
+document.getElementById("hint-p1").addEventListener("click", hint);
+document.getElementById("hint-p-1").addEventListener("click", hint);
