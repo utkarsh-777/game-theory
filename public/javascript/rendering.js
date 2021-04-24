@@ -439,16 +439,14 @@ if (window.location.href.split("/").includes("collections")) {
       .then(function (response) {
         response.json().then(function (data) {
           console.log("🚀 ~ file: script.js ~ line 441 ~ data", data);
-          console.log(
-            "🚀 ~ file: script.js ~ line 442 ~ data",
-            data.data.stats
-          );
+          console.log("🚀 ~ file: script.js ~ line 442 ~ data", data.data);
           if (!data.data) {
             console.log(data + "................");
             // console.log("***********");
             return;
           }
-          const stats = data.data.stats;
+          const stats = data.data;
+          console.log("🚀 ~ file: script.js ~ line 452 ~ stats", stats);
           if (!stats) {
             console.log("🚀 ~ file: script.js ~ line 443 ~ stats", stats);
             return;
