@@ -438,16 +438,16 @@ if (window.location.href.split("/").includes("collections")) {
     })
       .then(function (response) {
         response.json().then(function (data) {
+          console.log("🚀 ~ file: script.js ~ line 441 ~ data", data);
           console.log(
-            "🚀 ~ file: script.js ~ line 441 ~ data",
+            "🚀 ~ file: script.js ~ line 442 ~ data",
             data.data.stats
           );
-          if (!data || !data.length) {
-            console.log(data.length + "................");
+          if (!data.data) {
+            console.log(data + "................");
             // console.log("***********");
             return;
           }
-          console.log("🚀 ~ file: script.js ~ line 441 ~ data", data.data);
           const stats = data.data.stats;
           if (!stats) {
             console.log("🚀 ~ file: script.js ~ line 443 ~ stats", stats);
