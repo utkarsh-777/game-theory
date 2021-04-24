@@ -472,7 +472,7 @@ if (window.location.href.split("/").includes("collections")) {
             }
           }
           const block = document.querySelector(
-            `[data-product_id=${productId}]`
+            `[data-product_id='${productId}']`
           );
           if (block)
             block.innerHTML = `${avgRatingStats} (${stats.totReviews})`;
