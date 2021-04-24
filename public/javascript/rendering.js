@@ -440,7 +440,8 @@ if (window.location.href.split("/").includes("collections")) {
         response.json().then(function (data) {
           console.log("🚀 ~ file: script.js ~ line 441 ~ data", data);
           if (!data || !data.length) {
-            console.log("***********");
+            console.log(data.length + "................");
+            // console.log("***********");
             return;
           }
           console.log("🚀 ~ file: script.js ~ line 441 ~ data", data[0]);
