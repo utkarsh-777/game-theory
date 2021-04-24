@@ -438,19 +438,21 @@ if (window.location.href.split("/").includes("collections")) {
     })
       .then(function (response) {
         response.json().then(function (data) {
-          console.log("🚀 ~ file: script.js ~ line 441 ~ data", data);
+          console.log(
+            "🚀 ~ file: script.js ~ line 441 ~ data",
+            data.data.stats
+          );
           if (!data || !data.length) {
             console.log(data.length + "................");
             // console.log("***********");
             return;
           }
-          console.log("🚀 ~ file: script.js ~ line 441 ~ data", data[0]);
-          const stats = data[0];
+          console.log("🚀 ~ file: script.js ~ line 441 ~ data", data.data);
+          const stats = data.data.stats;
           if (!stats) {
             console.log("🚀 ~ file: script.js ~ line 443 ~ stats", stats);
             return;
           }
-          window.location.dataApi = data;
 
           let avgRatingStats = "";
           let avgRatingValue = Math.round(10 * stats.avgRating) / 10;
