@@ -102,9 +102,9 @@ function start() {
 <div class="review-block" style="margin-top: 50px">
 <h2 class="review__heading--title">CUSTOMER REVIEWS</h2>
 <h4 style="margin-bottom: 20px; text-align: center;" class="average-ratings-block"></h4>
-<div class="review-popup-div" >
+
 <button class="popup-btn">write a review </button>
-</div>
+
 <div class="display-none" id="form-popup">
   <div class="form-popup--content">
         
