@@ -161,21 +161,19 @@ function start() {
       } else alert("no more data");
     });
     formButtonEventListener;
-    document
-      .querySelector(".review-popup-div")
-      .addEventListener("click", (event) => {
-        if (document.querySelector(".display-none")) {
-          document.querySelector(".popup-btn").innerText = "cancel review";
-          document
-            .querySelector(".display-none")
-            .setAttribute("class", "form-popup");
-        } else if (document.querySelector(".form-popup")) {
-          document.querySelector(".popup-btn").innerText = "write a review";
-          document
-            .querySelector(".form-popup")
-            .setAttribute("class", "display-none");
-        }
-      });
+    document.querySelector(".popup-btn").addEventListener("click", (event) => {
+      if (document.querySelector(".display-none")) {
+        document.querySelector(".popup-btn").innerText = " cancel review";
+        document
+          .querySelector(".display-none")
+          .setAttribute("class", "form-popup");
+      } else if (document.querySelector(".form-popup")) {
+        document.querySelector(".popup-btn").innerText = "write a review";
+        document
+          .querySelector(".form-popup")
+          .setAttribute("class", "display-none");
+      }
+    });
 
     document.getElementById("btn-next").addEventListener("click", (event) => {
       // NEXT BUTTON  -> IF PAGE NUMBER == TOTALPAGENUMBERS NEXT BUTTON WILL BE HIDDEN ELSE VISIBLE
