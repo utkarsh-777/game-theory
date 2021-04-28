@@ -17,7 +17,7 @@ const ratingStarHalf =
   '<span class="fa fa-star-half-o"  aria-hidden="true" style="color: yellow"></span>';
 
 function start() {
-  let isData = true;
+  let isData = false;
   let reviewsPageNumber = 1;
   let totalPages;
   let cardsDiv;
@@ -309,16 +309,16 @@ function start() {
     console.log(reviews);
     cardsDiv = document.querySelector(".cards");
     console.log(cardsDiv);
-
+    if (reviews.length) isData = true;
     // NICE TO HAVE FEATURE
     // 1) WILL GIVE CUSTOMER THE OPTIONS TO CHANGE THE NO REVIEW TEXT
+    if (!isData) document.querySelector(".pagination").innerHTML = "";
     if (!reviews.length) {
-      isData = false;
       cardsDiv.innerHTML = `<h1 style="text-align: center;">No Reviews</h1>`;
-      document.querySelector(".pagination").innerHTML = "";
       document.getElementById("btn-next").style.display = "none";
       return;
     }
+
     // ADD LOADING SPINNER
     cardsDiv.innerHTML = loading;
     let script = "";
@@ -443,7 +443,6 @@ function sendProductLink() {
   })
     .then(function (response) {
       // Examine the text in the response
-      alert("data sent successfully");
     })
     .catch((error) => alert(error));
 }
