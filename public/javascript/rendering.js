@@ -102,8 +102,9 @@ function start() {
 <div class="review-block" style="margin-top: 50px">
 <h2 class="review__heading--title">CUSTOMER REVIEWS</h2>
 <h4 style="margin-bottom: 20px; text-align: center;" class="average-ratings-block"></h4>
+<div class="review-popup-div" >
 <button class="popup-btn">write a review </button>
-
+</div>
 <div class="display-none" id="form-popup">
   <div class="form-popup--content">
         
@@ -160,19 +161,21 @@ function start() {
       } else alert("no more data");
     });
     formButtonEventListener;
-    document.querySelector(".popup-btn").addEventListener("click", (event) => {
-      if (document.querySelector(".display-none")) {
-        document.querySelector(".popup-btn").innerText = "cancel review";
-        document
-          .querySelector(".display-none")
-          .setAttribute("class", "form-popup");
-      } else if (document.querySelector(".form-popup")) {
-        document.querySelector(".popup-btn").innerText = "write a review";
-        document
-          .querySelector(".form-popup")
-          .setAttribute("class", "display-none");
-      }
-    });
+    document
+      .querySelector(".review-popup-div")
+      .addEventListener("click", (event) => {
+        if (document.querySelector(".display-none")) {
+          document.querySelector(".popup-btn").innerText = "cancel review";
+          document
+            .querySelector(".display-none")
+            .setAttribute("class", "form-popup");
+        } else if (document.querySelector(".form-popup")) {
+          document.querySelector(".popup-btn").innerText = "write a review";
+          document
+            .querySelector(".form-popup")
+            .setAttribute("class", "display-none");
+        }
+      });
 
     document.getElementById("btn-next").addEventListener("click", (event) => {
       // NEXT BUTTON  -> IF PAGE NUMBER == TOTALPAGENUMBERS NEXT BUTTON WILL BE HIDDEN ELSE VISIBLE
