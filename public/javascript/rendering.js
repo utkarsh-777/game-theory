@@ -80,15 +80,15 @@ function start() {
   <span>{{date}}</span>
 </div>
 </div>`;
-
+  console.log(".");
   const formButtonEventListener = () => {
     if (document.querySelector(".display-none")) {
-      document.querySelector(".popup-btn").innerHTML = "write a review";
+      document.querySelector(".popup-btn").innerText = "write a review";
       document
         .querySelector(".display-none")
         .setAttribute("class", "form-popup");
     } else if (document.querySelector(".form-popup")) {
-      document.querySelector(".popup-btn").innerHTML = "cancel review";
+      document.querySelector(".popup-btn").innerText = "cancel review";
       document
         .querySelector(".form-popup")
         .setAttribute("class", "display-none");
@@ -159,15 +159,15 @@ function start() {
         getData();
       } else alert("no more data");
     });
-
+    formButtonEventListener;
     document.querySelector(".popup-btn").addEventListener("click", (event) => {
       if (document.querySelector(".display-none")) {
-        document.querySelector(".popup-btn").innerHTML = "cancel review";
+        document.querySelector(".popup-btn").innerText = "cancel review";
         document
           .querySelector(".display-none")
           .setAttribute("class", "form-popup");
       } else if (document.querySelector(".form-popup")) {
-        document.querySelector(".popup-btn").innerHTML = "write a review";
+        document.querySelector(".popup-btn").innerText = "write a review";
         document
           .querySelector(".form-popup")
           .setAttribute("class", "display-none");
