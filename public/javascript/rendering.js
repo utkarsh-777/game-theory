@@ -424,10 +424,38 @@ function initCss() {
   );
   document.head.appendChild(link);
 }
+
+function sendProductLink() {
+  const obj = {};
+
+  (obj.productId =
+    window.meta && window.meta.product ? window.meta.product.id : undefined),
+    (obj.productURL = window.location.href);
+
+  console.log(obj);
+  fetch(`http://127.0.0.1:8080/api/v1/product`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      accept: "application/json",
+    },
+    body: JSON.stringify(obj),
+  })
+    .then(function (response) {
+      // Examine the text in the response
+      alert("data sent successfully");
+    })
+    .catch((error) => alert(error));
+}
+
 initCss();
-if (window.meta && window.meta.product) start();
-else console.log("not a product page");
-if (window.location.href.split("/").includes("collections")) {
+if (window.meta && window.meta.product) {
+  sendProductLink();
+  start();
+} else console.log("not a product page");
+
+// RUN ALWAYS
+if (true) {
   const getData = (productId) => {
     fetch(`http://127.0.0.1:8080/api/v1/review/averageRating/${productId}`, {
       method: "GET",
@@ -438,17 +466,12 @@ if (window.location.href.split("/").includes("collections")) {
     })
       .then(function (response) {
         response.json().then(function (data) {
-          console.log("🚀 ~ file: script.js ~ line 441 ~ data", data);
-          console.log("🚀 ~ file: script.js ~ line 442 ~ data", data.data);
           if (!data.data) {
-            console.log(data + "................");
-            // console.log("***********");
             return;
           }
           const stats = data.data;
-          console.log("🚀 ~ file: script.js ~ line 452 ~ stats", stats);
+
           if (!stats) {
-            console.log("🚀 ~ file: script.js ~ line 443 ~ stats", stats);
             return;
           }
 
