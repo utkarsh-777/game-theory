@@ -15,7 +15,7 @@ const ratingStarsChecked = '<span class="fa fa-star checked"></span>';
 const ratingStarsUnchecked = '<span class="fa fa-star"></span>';
 const ratingStarHalf =
   '<span class="fa fa-star-half-o"  aria-hidden="true" style="color: yellow"></span>';
-
+let reviewSource = "web";
 function start() {
   let isData = false;
   let reviewsPageNumber = 1;
@@ -210,7 +210,7 @@ function start() {
           ? window.meta.product.id
           : undefined),
         (obj.productUrl = window.location.href);
-      obj.source = "web";
+      obj.source = reviewSource;
       obj.shopUrl = window.location.hostname;
       obj.rating = ratingValue;
       obj.productName =
@@ -533,6 +533,10 @@ const isFromEmail = () => {
     .then(function (response) {
       response.json().then(function (data) {
         console.log("🚀 ~ file: script.js ~ line 535 ~ data", data);
+        const email = data.email;
+        document.getElementById("email").value = email;
+        document.getElementById("email").setAttribute("readonly", true);
+        reviewSource = "email";
       });
     })
     .catch((error) => console.log(error));
