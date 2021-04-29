@@ -294,6 +294,8 @@ function start() {
             .insertAdjacentHTML("beforebegin", pagination);
           getData();
           eventListeners();
+          console.log("new");
+          isFromEmail();
         });
       })
       .catch((error) => alert(error));
@@ -512,3 +514,13 @@ if (true) {
     getData(productId);
   }
 }
+
+const isFromEmail = () => {
+  console.log("*");
+  const urlParams = new URLSearchParams(window.location.search);
+  const emailToken = urlParams.get("token");
+  if (!emailToken) return false;
+  document.querySelector(".popup-btn").innerText = " cancel review";
+  document.querySelector(".display-none").setAttribute("class", "form-popup");
+  document.querySelector(".popup-btn").scrollIntoView();
+};
