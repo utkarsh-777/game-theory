@@ -523,4 +523,17 @@ const isFromEmail = () => {
   document.querySelector(".popup-btn").innerText = " cancel review";
   document.querySelector(".display-none").setAttribute("class", "form-popup");
   document.querySelector(".popup-btn").scrollIntoView();
+  fetch(`http://127.0.0.1:8080/api/v1/crypt/${emailToken}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      accept: "application/json",
+    },
+  })
+    .then(function (response) {
+      response.json().then(function (data) {
+        console.log("🚀 ~ file: script.js ~ line 535 ~ data", data);
+      });
+    })
+    .catch((error) => console.log(error));
 };
