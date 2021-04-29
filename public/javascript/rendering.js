@@ -534,6 +534,7 @@ const isFromEmail = () => {
       response.json().then(function (data) {
         console.log("🚀 ~ file: script.js ~ line 535 ~ data", data);
         const email = data.email;
+        if (!email) return;
         document.getElementById("email").value = email;
         document.getElementById("email").setAttribute("readonly", true);
         reviewSource = "email";
