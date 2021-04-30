@@ -211,11 +211,20 @@ function start() {
         // console.log(pair[0] + ", " + pair[1]);
         obj[pair[0]] = pair[1];
       }
-      (obj.productId =
-        window.meta && window.meta.product
-          ? window.meta.product.id
-          : undefined),
-        (obj.productUrl = window.location.href);
+      data.append("productId", window.meta.product.id);
+      data.append("productUrl", window.location.href);
+      //(
+      //   //   (obj.productId =
+      //   //     window.meta && window.meta.product
+      //   //       ? window.meta.product.id
+      //   //       : undefined)
+      //   // ),
+      //   (obj.productUrl = window.location.href)
+      // );
+      data.append("source", reviewSource);
+      data.append("shopUrl", window.location.hostname);
+      data.append("rating", ratingValue);
+      data.append("productName", window.meta.product.variants[0].name);
       obj.source = reviewSource;
       obj.shopUrl = window.location.hostname;
       obj.rating = ratingValue;
