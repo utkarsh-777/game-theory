@@ -202,6 +202,10 @@ function start() {
 
       // Get the form data from the event object
       let data = e.formData;
+      console.log(
+        "🚀 ~ file: script.js ~ line 205 ~ formElem.addEventListener ~ data",
+        data
+      );
       const obj = {};
       for (var pair of data.entries()) {
         // console.log(pair[0] + ", " + pair[1]);
