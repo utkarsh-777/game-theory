@@ -126,6 +126,8 @@ function start() {
         <input type="text" id="review-heading" name="reviewHeading" placeholder="Give your review a atitle(public)" >
         <label for="review-description">Review description:</label>
         <textarea id="review-description" name="reviewDescription" rows="3" cols="50" > </textarea>
+        <label for="review-image">Image</label>
+        <input type="file" name="photo" id="review-image" accept="image/x-png,image/gif,image/jpeg" />
         <button>submit</button>
       </form>
     </div>
