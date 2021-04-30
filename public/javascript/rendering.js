@@ -440,7 +440,7 @@ function initCss() {
   link.setAttribute("type", "text/css");
   link.setAttribute(
     "href",
-    "https://cdn.jsdelivr.net/gh/atisheyJain03/temp_script/review_rendering7.css"
+    "https://cdn.jsdelivr.net/gh/atisheyJain03/temp_script/review_rendering8.css"
   );
   document.head.appendChild(link);
 }
