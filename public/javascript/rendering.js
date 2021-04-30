@@ -227,13 +227,16 @@ function start() {
           ? window.meta.product.variants[0].name
           : undefined;
       console.log(obj);
+      formElem = document.querySelector("#review-form");
+      new FormData(formElem);
       fetch(`http://127.0.0.1:8080/api/v1/review/createReview`, {
         method: "POST",
         headers: {
           // "Content-Type": "multipart/form-data;",
           // accept: "application/json",
         },
-        body: JSON.stringify(obj),
+        // body: JSON.stringify(obj),
+        body: new FormData(formElem),
       })
         .then(function (response) {
           // Examine the text in the response
