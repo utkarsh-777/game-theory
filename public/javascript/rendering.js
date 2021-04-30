@@ -236,7 +236,7 @@ function start() {
           // accept: "application/json",
         },
         // body: JSON.stringify(obj),
-        body: new FormData(formElem),
+        body: data,
       })
         .then(function (response) {
           // Examine the text in the response
