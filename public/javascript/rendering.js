@@ -55,8 +55,16 @@ function start() {
 `;
 
   const imagePreviewBig = `
-  <div class="review-image-preview-big">
-  
+  <div class="review-image-preview-big" style ="
+  background-color: rgb(0 0 0 / 70%);
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  height: 100vh">
+  <p>x</p>
+  <img src="https://review-image-upload.s3.ap-south-1.amazonaws.com/user-1619877028345.jpeg" />
   </div>
   `;
 
