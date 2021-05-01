@@ -128,18 +128,6 @@ function start() {
   console.log(".");
   const formButtonEventListener = () => {
     if (document.querySelector(".display-none")) {
-      console.log(
-        "🚀 ~ file: script.js ~ line 117 ~ showReviewImage ~ event.target",
-        event.target
-      );
-      console.log(
-        "🚀 ~ file: script.js ~ line 117 ~ showReviewImage ~ event.target",
-        event.target
-      );
-      console.log(
-        "🚀 ~ file: script.js ~ line 117 ~ showReviewImage ~ event.target",
-        event.target
-      );
       document.querySelector(".popup-btn").innerText = "write a review";
       document
         .querySelector(".display-none")
@@ -538,7 +526,7 @@ function start() {
 
     let allReviewImages = document.querySelectorAll("#review-image-small");
     for (let i = 0; i < allReviewImages.length; i++) {
-      allReviewImages[i].addEventListener("click", showReviewImage(), false);
+      allReviewImages[i].addEventListener("click", showReviewImage, false);
     }
   };
 
