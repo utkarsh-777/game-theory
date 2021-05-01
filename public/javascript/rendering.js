@@ -63,8 +63,16 @@ function start() {
   left: 0;
   z-index: 9999;
   height: 100vh">
-  <p>x</p>
-  <img src="https://review-image-upload.s3.ap-south-1.amazonaws.com/user-1619877028345.jpeg" />
+  <p style="margin-left: 92vw;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  width: fit-content;
+  color: white;" 
+  >x</p>
+  <img src="https://review-image-upload.s3.ap-south-1.amazonaws.com/user-1619877028345.jpeg"
+  style="display: block; margin: auto;"
+  />
   </div>
   `;
 
