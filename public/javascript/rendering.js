@@ -103,7 +103,7 @@ function start() {
     let inputFile = event.target;
     console.log(
       "🚀 ~ file: script.js ~ line 104 ~ loadFile ~ inputFile",
-      inputFile
+      inputFile.files.length
     );
 
     if (inputFile.files.length) {
