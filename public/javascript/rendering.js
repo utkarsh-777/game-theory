@@ -127,8 +127,8 @@ function start() {
         <label for="review-description">Review description:</label>
         <textarea id="review-description" name="reviewDescription" rows="3" cols="50" > </textarea>
         <label>Image</label>
-        <label for="review-image"><img src="https://review-image-upload.s3.ap-south-1.amazonaws.com/user-1619877028345.jpeg" style="width:150px;" /></label>
-        <div class="form-images-preview"> 
+        <label for="review-image" display: inline-block;><img src="https://review-image-upload.s3.ap-south-1.amazonaws.com/user-1619877028345.jpeg" style="width:150px;" /></label>
+        <div class="form-images-preview" display: inline-block;> 
         <img src="https://review-image-upload.s3.ap-south-1.amazonaws.com/user-1619877028345.jpeg" style="width:150px;" />
         
         </div>
@@ -213,10 +213,10 @@ function start() {
         data
       );
       const obj = {};
-      for (var pair of data.entries()) {
-        // console.log(pair[0] + ", " + pair[1]);
-        obj[pair[0]] = pair[1];
-      }
+      // for (var pair of data.entries()) {
+      //   // console.log(pair[0] + ", " + pair[1]);
+      //   obj[pair[0]] = pair[1];
+      // }
       data.append("productId", window.meta.product.id);
       data.append("productUrl", window.location.href);
       //(
@@ -231,17 +231,32 @@ function start() {
       data.append("shopUrl", window.location.hostname);
       data.append("rating", ratingValue);
       data.append("productName", window.meta.product.variants[0].name);
-      obj.source = reviewSource;
-      obj.shopUrl = window.location.hostname;
-      obj.rating = ratingValue;
-      obj.productName =
-        window.meta &&
-        window.meta.product &&
-        window.meta.product.variants &&
-        window.meta.product.variants.length
-          ? window.meta.product.variants[0].name
-          : undefined;
-      console.log(obj);
+      // obj.source = reviewSource;
+      // obj.shopUrl = window.location.hostname;
+      // obj.rating = ratingValue;
+      // obj.productName =
+      //   window.meta &&
+      //   window.meta.product &&
+      //   window.meta.product.variants &&
+      //   window.meta.product.variants.length
+      //     ? window.meta.product.variants[0].name
+      //     : undefined;
+      // console.log(obj);
+
+      var output = document.getElementById("form-images-preview");
+      let inputFile = document.getElementById("review-image");
+      console.log(
+        "🚀 ~ file: script.js ~ line 249 ~ formElem.addEventListener ~ inputFile.files.length",
+        inputFile.files.length
+      );
+      if (inputFile.files.length) {
+        let imageUrl = URL.createObjectURL(inputFile.files[0]);
+        let img = `<img src="${imageUrl} />"`;
+        inputFile.insertAdjacentHTML("beforeend", img);
+        output.onload = function () {
+          URL.revokeObjectURL(output.src); // free memory
+        };
+      }
 
       fetch(`http://127.0.0.1:8080/api/v1/review/createReview`, {
         method: "POST",
