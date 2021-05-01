@@ -114,7 +114,9 @@ function start() {
           imageUrl
         );
         let img = `<img src="${imageUrl} />"`;
+        console.log("🚀 ~ file: script.js ~ line 117 ~ loadFile ~ img", img);
         output.insertAdjacentHTML("beforeend", img);
+        console.log("----", output.innerHTML);
       }
     }
   }
@@ -184,6 +186,18 @@ function start() {
       if (reviewsPageNumber > 1) {
         reviewsPageNumber--;
         if (reviewsPageNumber == 1) {
+          console.log(
+            "🚀 ~ file: script.js ~ line 189 ~ loadFile ~ output",
+            output
+          );
+          console.log(
+            "🚀 ~ file: script.js ~ line 189 ~ loadFile ~ output",
+            output
+          );
+          console.log(
+            "🚀 ~ file: script.js ~ line 189 ~ loadFile ~ output",
+            output
+          );
           document.getElementById("btn-prev").style.visibility = "hidden";
         }
         document.querySelector(
