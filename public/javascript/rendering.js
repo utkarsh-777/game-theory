@@ -127,8 +127,13 @@ function start() {
         <label for="review-description">Review description:</label>
         <textarea id="review-description" name="reviewDescription" rows="3" cols="50" > </textarea>
         <label>Image</label>
-        <label for="review-image"><img src="https://review-image-upload.s3.ap-south-1.amazonaws.com/user-1619877028345.jpeg" /></label>
-        <input type="file" name="photo" id="review-image" accept="image/x-png,image/gif,image/jpeg" />
+        <label for="review-image"><img src="https://review-image-upload.s3.ap-south-1.amazonaws.com/user-1619877028345.jpeg" style="width:150px;" /></label>
+        <div class="form-images-preview"> 
+        <img src="https://review-image-upload.s3.ap-south-1.amazonaws.com/user-1619877028345.jpeg" style="width:150px;" />
+        
+        </div>
+        <input type="file" name="photo" id="review-image" accept="image/x-png,image/gif,image/jpeg"
+        style="display:none;" />
         <button>submit</button>
       </form>
     </div>
