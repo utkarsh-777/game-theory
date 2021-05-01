@@ -118,7 +118,7 @@ function start() {
       //   output.insertAdjacentHTML("beforeend", img);
       //   console.log("----", output.innerHTML);
       // }
-      let imageUrl = URL.createObjectURL(inputFile.files[i]);
+      let imageUrl = URL.createObjectURL(inputFile.files[0]);
       document.getElementById("pic").src = imageUrl;
       document.getElementById("pic").style.display = "block";
     }
