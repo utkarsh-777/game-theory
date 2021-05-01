@@ -129,11 +129,10 @@ function start() {
         <label>Image</label>
         <label for="review-image" style="display: inline-block;"><img src="https://review-image-upload.s3.ap-south-1.amazonaws.com/user-1619877028345.jpeg" style="width:150px;" /></label>
         <div class="form-images-preview" style="display: inline-block;"> 
-        <img src="https://review-image-upload.s3.ap-south-1.amazonaws.com/user-1619877028345.jpeg" style="width:150px;" />
-        
+        <img src="https://review-image-upload.s3.ap-south-1.amazonaws.com/user-1619877028345.jpeg" style="width:150px;" id="pic/>
         </div>
         <input type="file" name="photo" id="review-image" accept="image/x-png,image/gif,image/jpeg"
-        style="display:none;" />
+        style="display:none;" oninput="pic.src=window.URL.createObjectURL(this.files[0])" />
         <button>submit</button>
       </form>
     </div>
