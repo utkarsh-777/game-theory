@@ -47,7 +47,8 @@ function start() {
     let block = document.querySelector(".review-image-preview-big");
     block.style.display = "block";
     let img = `<img src="${event.target.src}" style="display: block; margin: auto;" id= "review-image-big" />`;
-    block.insertAdjacentHTML("beforeend", img);
+    document.getElementById("review-image-big").src = event.target.src;
+    // block.insertAdjacentHTML("beforeend", img);
   }
 
   function closeReviewImage() {
