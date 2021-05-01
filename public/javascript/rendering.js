@@ -127,8 +127,8 @@ function start() {
         <label for="review-description">Review description:</label>
         <textarea id="review-description" name="reviewDescription" rows="3" cols="50" > </textarea>
         <label>Image</label>
-        <label for="review-image" display: inline-block;><img src="https://review-image-upload.s3.ap-south-1.amazonaws.com/user-1619877028345.jpeg" style="width:150px;" /></label>
-        <div class="form-images-preview" display: inline-block;> 
+        <label for="review-image" style="display: inline-block;"><img src="https://review-image-upload.s3.ap-south-1.amazonaws.com/user-1619877028345.jpeg" style="width:150px;" /></label>
+        <div class="form-images-preview" style="display: inline-block;"> 
         <img src="https://review-image-upload.s3.ap-south-1.amazonaws.com/user-1619877028345.jpeg" style="width:150px;" />
         
         </div>
@@ -251,10 +251,14 @@ function start() {
       );
       if (inputFile.files.length) {
         let imageUrl = URL.createObjectURL(inputFile.files[0]);
+        console.log(
+          "🚀 ~ file: script.js ~ line 254 ~ formElem.addEventListener ~ imageUrl",
+          imageUrl
+        );
         let img = `<img src="${imageUrl} />"`;
         inputFile.insertAdjacentHTML("beforeend", img);
         output.onload = function () {
-          URL.revokeObjectURL(output.src); // free memory
+          URL.revokeObjectURL(imageUrl); // free memory
         };
       }
 
