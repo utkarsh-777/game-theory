@@ -131,7 +131,7 @@ function start() {
         <img src="https://review-image-upload.s3.ap-south-1.amazonaws.com/user-1619877028345.jpeg" style="width:150px;" />
         </label>
         <input type="file" name="photo" id="review-image" accept="image/x-png,image/gif,image/jpeg"
-        style="display:none;" oninput="pic.src=window.URL.createObjectURL(this.files[0])" />
+        style="display:none;"/>
         <div class="form-images-preview" style="display: inline-block;"> 
         <img src="https://review-image-upload.s3.ap-south-1.amazonaws.com/user-1619877028345.jpeg" style="width:150px;" id="pic"/>
         </div>
@@ -141,13 +141,13 @@ function start() {
       </form>
     </div>
   </div>
-
+ 
 </div>
 <div class="cards">
 </div>
 </div>
 `;
-
+  // oninput = "pic.src=window.URL.createObjectURL(this.files[0])";
   const reviewForm = `
 `;
 
@@ -253,16 +253,15 @@ function start() {
         inputFile.files.length
       );
       if (inputFile.files.length) {
-        let imageUrl = URL.createObjectURL(inputFile.files[0]);
-        console.log(
-          "🚀 ~ file: script.js ~ line 254 ~ formElem.addEventListener ~ imageUrl",
-          imageUrl
-        );
-        let img = `<img src="${imageUrl} />"`;
-        inputFile.insertAdjacentHTML("beforeend", img);
-        output.onload = function () {
-          URL.revokeObjectURL(imageUrl); // free memory
-        };
+        for (let i = 0; i < inputFile.files.length; i++) {
+          let imageUrl = URL.createObjectURL(inputFile.files[i]);
+          console.log(
+            "🚀 ~ file: script.js ~ line 254 ~ formElem.addEventListener ~ imageUrl",
+            imageUrl
+          );
+          let img = `<img src="${imageUrl} />"`;
+          inputFile.insertAdjacentHTML("beforeend", img);
+        }
       }
 
       fetch(`http://127.0.0.1:8080/api/v1/review/createReview`, {
