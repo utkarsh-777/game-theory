@@ -54,6 +54,12 @@ function start() {
 </div>
 `;
 
+  const imagePreviewBig = `
+  <div class="review-image-preview-big">
+  
+  </div>
+  `;
+
   const reviewCard = `<div class="card">
 <div class="card-top">
   <div class="name">
@@ -342,7 +348,9 @@ function start() {
     document
       .querySelector("footer")
       .insertAdjacentHTML("beforebegin", reviewBlock);
-
+    document
+      .querySelector("body")
+      .insertAdjacentHTML("afterbegin", imagePreviewBig);
     const bodyData = {
       isPublished: true,
       product:
