@@ -107,17 +107,19 @@ function start() {
     );
 
     if (inputFile.files.length) {
-      for (let i = 0; i < inputFile.files.length; i++) {
-        let imageUrl = URL.createObjectURL(inputFile.files[i]);
-        console.log(
-          "🚀 ~ file: script.js ~ line 254 ~ formElem.addEventListener ~ imageUrl",
-          imageUrl
-        );
-        let img = `<img src="${imageUrl}" style="width:150px;" />`;
-        console.log("🚀 ~ file: script.js ~ line 117 ~ loadFile ~ img", img);
-        output.insertAdjacentHTML("beforeend", img);
-        console.log("----", output.innerHTML);
-      }
+      // for (let i = 0; i < inputFile.files.length; i++) {
+      //   let imageUrl = URL.createObjectURL(inputFile.files[i]);
+      //   console.log(
+      //     "🚀 ~ file: script.js ~ line 254 ~ formElem.addEventListener ~ imageUrl",
+      //     imageUrl
+      //   );
+      //   let img = `<img src="${imageUrl}" style="width:150px;" />`;
+      //   console.log("🚀 ~ file: script.js ~ line 117 ~ loadFile ~ img", img);
+      //   output.insertAdjacentHTML("beforeend", img);
+      //   console.log("----", output.innerHTML);
+      // }
+      let imageUrl = URL.createObjectURL(inputFile.files[i]);
+      document.getElementById("pic").src = imageUrl;
       document.getElementById("pic").style.display = "block";
     }
   }
