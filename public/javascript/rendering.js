@@ -16,6 +16,7 @@ const ratingStarsUnchecked = '<span class="fa fa-star"></span>';
 const ratingStarHalf =
   '<span class="fa fa-star-half-o"  aria-hidden="true" style="color: yellow"></span>';
 let reviewSource = "web";
+
 function start() {
   let isData = false;
   let reviewsPageNumber = 1;
@@ -38,22 +39,6 @@ function start() {
     }
   };
 
-  var loading = ` 
-<div class="loader">
-    <div class="loader loader-1">
-    <div class="loader-outter"></div>
-    <div class="loader-inner"></div>
-    </div>
-</div>`;
-
-  const pagination = `
-<div class="pagination">
-  <button class="" id = "btn-prev">prev</button>
-  <p class="pagination-page-number" >1</p>
-  <button class="" id = "btn-next">next</button>
-</div>
-`;
-
   function showReviewImage(event) {
     console.log(
       "🚀 ~ file: script.js ~ line 58 ~ showReviewImage ~ event",
@@ -70,11 +55,27 @@ function start() {
     block.style.display = "none";
   }
 
+  var loading = ` 
+<div class="loader">
+    <div class="loader loader-1">
+    <div class="loader-outter"></div>
+    <div class="loader-inner"></div>
+    </div>
+</div>`;
+
+  const pagination = `
+<div class="pagination">
+  <button class="" id = "btn-prev">prev</button>
+  <p class="pagination-page-number" >1</p>
+  <button class="" id = "btn-next">next</button>
+</div>
+`;
+
   const imagePreviewBig = `
   <div class="review-image-preview-big" style ="
   background-color: rgb(0 0 0 / 70%);
   position: fixed;
-  display:"none";
+  display:none;
   width: 100vw;
   top: 0;
   left: 0;
