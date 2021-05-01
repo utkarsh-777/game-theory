@@ -98,6 +98,27 @@ function start() {
     /* <a href="#" class="popup-close" onClick="document.querySelector('.form-popup').setAttribute('class','display-none')" >x</a>    */
   }
 
+  function loadFile(event) {
+    var output = document.getElementById("form-images-preview");
+    let inputFile = event.target;
+    console.log(
+      "🚀 ~ file: script.js ~ line 104 ~ loadFile ~ inputFile",
+      inputFile
+    );
+
+    if (inputFile.files.length) {
+      for (let i = 0; i < inputFile.files.length; i++) {
+        let imageUrl = URL.createObjectURL(inputFile.files[i]);
+        console.log(
+          "🚀 ~ file: script.js ~ line 254 ~ formElem.addEventListener ~ imageUrl",
+          imageUrl
+        );
+        let img = `<img src="${imageUrl} />"`;
+        output.insertAdjacentHTML("beforeend", img);
+      }
+    }
+  }
+
   const reviewBlock = `
 <div class="review-block" style="margin-top: 50px">
 <h2 class="review__heading--title">CUSTOMER REVIEWS</h2>
@@ -131,7 +152,7 @@ function start() {
         <img src="https://review-image-upload.s3.ap-south-1.amazonaws.com/user-1619877028345.jpeg" style="width:150px;" />
         </label>
         <input type="file" name="photo" id="review-image" accept="image/x-png,image/gif,image/jpeg"
-        style="display:none;"/>
+        style="display:none;" onchange="loadFile(event)"/>
         <div class="form-images-preview" style="display: inline-block;"> 
         <img src="https://review-image-upload.s3.ap-south-1.amazonaws.com/user-1619877028345.jpeg" style="width:150px;" id="pic"/>
         </div>
@@ -246,23 +267,23 @@ function start() {
       //     : undefined;
       // console.log(obj);
 
-      var output = document.getElementById("form-images-preview");
-      let inputFile = document.getElementById("review-image");
-      console.log(
-        "🚀 ~ file: script.js ~ line 249 ~ formElem.addEventListener ~ inputFile.files.length",
-        inputFile.files.length
-      );
-      if (inputFile.files.length) {
-        for (let i = 0; i < inputFile.files.length; i++) {
-          let imageUrl = URL.createObjectURL(inputFile.files[i]);
-          console.log(
-            "🚀 ~ file: script.js ~ line 254 ~ formElem.addEventListener ~ imageUrl",
-            imageUrl
-          );
-          let img = `<img src="${imageUrl} />"`;
-          inputFile.insertAdjacentHTML("beforeend", img);
-        }
-      }
+      // var output = document.getElementById("form-images-preview");
+      // let inputFile = document.getElementById("review-image");
+      // console.log(
+      //   "🚀 ~ file: script.js ~ line 249 ~ formElem.addEventListener ~ inputFile.files.length",
+      //   inputFile.files.length
+      // );
+      // if (inputFile.files.length) {
+      //   for (let i = 0; i < inputFile.files.length; i++) {
+      //     let imageUrl = URL.createObjectURL(inputFile.files[i]);
+      //     console.log(
+      //       "🚀 ~ file: script.js ~ line 254 ~ formElem.addEventListener ~ imageUrl",
+      //       imageUrl
+      //     );
+      //     let img = `<img src="${imageUrl} />"`;
+      //     output.insertAdjacentHTML("beforeend", img);
+      //   }
+      // }
 
       fetch(`http://127.0.0.1:8080/api/v1/review/createReview`, {
         method: "POST",
