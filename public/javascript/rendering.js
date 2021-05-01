@@ -113,7 +113,7 @@ function start() {
           "🚀 ~ file: script.js ~ line 254 ~ formElem.addEventListener ~ imageUrl",
           imageUrl
         );
-        let img = `<img src="${imageUrl} />"`;
+        let img = `<img src="${imageUrl}" />`;
         console.log("🚀 ~ file: script.js ~ line 117 ~ loadFile ~ img", img);
         output.insertAdjacentHTML("beforeend", img);
         console.log("----", output.innerHTML);
