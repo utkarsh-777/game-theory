@@ -538,7 +538,7 @@ function start() {
 
     let allReviewImages = document.querySelectorAll("#review-image-small");
     for (let i = 0; i < allReviewImages.length; i++) {
-      elements[i].addEventListener("click", showReviewImage(), false);
+      allReviewImages[i].addEventListener("click", showReviewImage(), false);
     }
   };
 
