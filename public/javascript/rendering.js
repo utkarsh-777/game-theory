@@ -235,9 +235,9 @@ function start() {
       ).innerHTML = reviewsPageNumber;
       getData();
     });
-    // document
-    //   .getElementById("review-image")
-    //   .addEventListener("change", loadFile);
+    document
+      .getElementById("review-image")
+      .addEventListener("change", loadFile);
     document
       .querySelector("#review-form")
       .addEventListener("submit", formSubmitFunction);
