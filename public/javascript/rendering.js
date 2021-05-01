@@ -74,7 +74,10 @@ function start() {
 <div class="card-content">
   <h2 class="card-content-heading">{{heading}}</h2>
   <p>{{description}}</p>
+  
 </div>
+
+{{image}}
 
 <div class="card-action">
   <span>{{date}}</span>
@@ -404,6 +407,12 @@ function start() {
         nb += reviews[i].customerName.split(" ")[1][0];
       nb = nb.toUpperCase();
       review = review.replace("{{nameBadge}}", nb);
+      if (reviews[i].reviewPhoto) {
+        review = review.replace(
+          "{{image}}",
+          `<image src="${reviews[i].reviewPhoto}" style="width:150px; height: 150px; object-fit: contain;" />`
+        );
+      }
       let rate = "";
 
       for (let j = 1; j <= 5; j++) {
