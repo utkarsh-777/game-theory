@@ -54,24 +54,43 @@ function start() {
 </div>
 `;
 
+  function showReviewImage(event) {
+    console.log(
+      "🚀 ~ file: script.js ~ line 58 ~ showReviewImage ~ event",
+      event.target
+    );
+    let block = document.querySelector(".review-image-preview-big");
+    block.style.display = "block";
+    let img = `<img src="https://review-image-upload.s3.ap-south-1.amazonaws.com/user-1619877028345.jpeg" style="display: block; margin: auto;" id= "review-image-big" />`;
+    block.insertAdjacentHTML("beforeend", img);
+  }
+
+  function closeReviewImage() {
+    let block = document.querySelector(".review-image-preview-big");
+    block.style.display = "none";
+  }
+
   const imagePreviewBig = `
   <div class="review-image-preview-big" style ="
   background-color: rgb(0 0 0 / 70%);
   position: fixed;
+  display:"none";
   width: 100vw;
   top: 0;
   left: 0;
   z-index: 9999;
   height: 100vh">
-  <p style="margin-left: 92vw;
+  <p  onclick="closeReviewImage()"
+  style="margin-left: 92vw;
   margin-top: 10px;
   cursor: pointer;
   font-size: 20px;
   width: fit-content;
   color: white;" 
+  id = "close-review-image"
   >x</p>
   <img src="https://review-image-upload.s3.ap-south-1.amazonaws.com/user-1619877028345.jpeg"
-  style="display: block; margin: auto;"
+  style="display: block; margin: auto;" id= "review-image-big" 
   />
   </div>
   `;
@@ -108,6 +127,18 @@ function start() {
   console.log(".");
   const formButtonEventListener = () => {
     if (document.querySelector(".display-none")) {
+      console.log(
+        "🚀 ~ file: script.js ~ line 117 ~ showReviewImage ~ event.target",
+        event.target
+      );
+      console.log(
+        "🚀 ~ file: script.js ~ line 117 ~ showReviewImage ~ event.target",
+        event.target
+      );
+      console.log(
+        "🚀 ~ file: script.js ~ line 117 ~ showReviewImage ~ event.target",
+        event.target
+      );
       document.querySelector(".popup-btn").innerText = "write a review";
       document
         .querySelector(".display-none")
@@ -434,7 +465,7 @@ function start() {
       if (reviews[i].reviewPhoto) {
         review = review.replace(
           "{{image}}",
-          `<image src="${reviews[i].reviewPhoto}" style="width:150px; height: 150px; object-fit: contain;" />`
+          `<image src="${reviews[i].reviewPhoto}" style="width:150px; height: 150px; object-fit: contain;" onclick="showReviewImage(event)" />`
         );
       }
       let rate = "";
