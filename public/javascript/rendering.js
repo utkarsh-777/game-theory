@@ -46,7 +46,7 @@ function start() {
     );
     let block = document.querySelector(".review-image-preview-big");
     block.style.display = "block";
-    let img = `<img src="https://review-image-upload.s3.ap-south-1.amazonaws.com/user-1619877028345.jpeg" style="display: block; margin: auto;" id= "review-image-big" />`;
+    let img = `<img src="${event.target.src}" style="display: block; margin: auto;" id= "review-image-big" />`;
     block.insertAdjacentHTML("beforeend", img);
   }
 
@@ -458,7 +458,7 @@ function start() {
       if (reviews[i].reviewPhoto) {
         review = review.replace(
           "{{image}}",
-          `<image src="${reviews[i].reviewPhoto}" style="width:150px; height: 150px; object-fit: contain;"  id="review-image-small" />`
+          `<image src="${reviews[i].reviewPhoto}" style="width:150px; height: 150px; object-fit: contain; cursor:pointer;"  id="review-image-small" />`
         );
         // onclick="showReviewImage(event)"
       } else {
