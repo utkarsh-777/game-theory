@@ -81,7 +81,7 @@ function start() {
   left: 0;
   z-index: 9999;
   height: 100vh">
-  <p  onclick="closeReviewImage()"
+  <p  "
   style="margin-left: 92vw;
   margin-top: 10px;
   cursor: pointer;
@@ -268,6 +268,10 @@ function start() {
           .setAttribute("class", "display-none");
       }
     });
+
+    document
+      .getElementById("close-review-image")
+      .addEventListener("click", closeReviewImage);
 
     document.getElementById("btn-next").addEventListener("click", (event) => {
       // NEXT BUTTON  -> IF PAGE NUMBER == TOTALPAGENUMBERS NEXT BUTTON WILL BE HIDDEN ELSE VISIBLE
@@ -466,8 +470,11 @@ function start() {
       if (reviews[i].reviewPhoto) {
         review = review.replace(
           "{{image}}",
-          `<image src="${reviews[i].reviewPhoto}" style="width:150px; height: 150px; object-fit: contain;" onclick="showReviewImage(event)" />`
+          `<image src="${reviews[i].reviewPhoto}" style="width:150px; height: 150px; object-fit: contain;"  id="review-image-small" />`
         );
+        // onclick="showReviewImage(event)"
+      } else {
+        review = review.replace("{{image}}", ``);
       }
       let rate = "";
 
@@ -528,6 +535,11 @@ function start() {
     if (block)
       block.innerHTML = `${avgRatingStats} based on ${stats.totReviews} reviews`;
     cardsDiv.innerHTML = script;
+
+    let allReviewImages = document.querySelectorAll("#review-image-small");
+    for (let i = 0; i < allReviewImages.length; i++) {
+      elements[i].addEventListener("click", showReviewImage(), false);
+    }
   };
 
   // FETCH DATA FROM DB
