@@ -118,6 +118,7 @@ function start() {
         output.insertAdjacentHTML("beforeend", img);
         console.log("----", output.innerHTML);
       }
+      document.getElementById("pic").style.display = "block";
     }
   }
 
