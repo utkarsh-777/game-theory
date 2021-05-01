@@ -155,7 +155,7 @@ function start() {
         <img src="https://review-image-upload.s3.ap-south-1.amazonaws.com/user-1619877028345.jpeg" style="width:150px;" />
         </label>
         <input type="file" name="photo" id="review-image" accept="image/x-png,image/gif,image/jpeg"
-        style="display:none;" oninput = "pic.src=window.URL.createObjectURL(this.files[0])"; />
+        style="display:none;"  />
         <div id="form-images-preview" style="display: inline-block;">
         <img src="" alt="" style="width:150px; height: 150px; object-fit: contain;" id ="pic" onerror="this.style.display='none'" />
         </div>
