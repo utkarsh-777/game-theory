@@ -498,8 +498,14 @@ function start() {
       if (reviews[i].reply) {
         review = review.replace(
           "{{reply}}",
-          ` <div class = "review-reply">
-              <p>${reviews[i].reply}</p>
+          ` <div class = "review-reply"  style = "font-style: italic;
+          background-color: #d3d3d357;
+          padding-bottom: 5px;
+          margin-left: 8vw;
+          font-weight: bold;
+          border-radius: 10px;
+          font-size: small;">
+              <p> <span style="font-size:medium">Reply</span>${reviews[i].reply}</p>
             </div>`
         );
       } else {
