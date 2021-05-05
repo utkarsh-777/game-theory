@@ -107,7 +107,6 @@ function start() {
       </div>
        <div>
        {{verified}}
-             
                 <span class="review-username">{{full name}}</span>    
             </div>   
     </div>
@@ -117,10 +116,13 @@ function start() {
 <div class="card-content">
   <h2 class="card-content-heading">{{heading}}</h2>
   <p>{{description}}</p>
-  
 </div>
 
 {{image}}
+
+{{reply}}
+
+
 
 <div class="card-action">
   <span>{{date}}</span>
@@ -492,6 +494,18 @@ function start() {
        </div>`
         );
       else review = review.replace("{{verified}}", "");
+
+      if (reviews[i].reply) {
+        review = review.replace(
+          "{{reply}}",
+          ` <div class = "review-reply">
+              <p>${reviews[i].reply}</p>
+            </div>`
+        );
+      } else {
+        review = review.replace("{{reply}}", ``);
+      }
+
       script += review;
     }
     // script = script.replace(
