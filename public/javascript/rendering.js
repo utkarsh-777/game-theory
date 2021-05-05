@@ -502,10 +502,12 @@ function start() {
           background-color: #d3d3d357;
           padding-bottom: 5px;
           margin-left: 8vw;
-          font-weight: bold;
           border-radius: 10px;
           font-size: small;">
-              <p> <span style="font-size:medium">Reply</span>${reviews[i].reply}</p>
+              <p> <span style="text-decoration: underline;
+              margin-right: 10px;
+              font-size: medium;
+              font-weight: bolder;">Reply - </span>${reviews[i].reply}</p>
             </div>`
         );
       } else {
